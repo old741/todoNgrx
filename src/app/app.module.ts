@@ -7,6 +7,10 @@ import { TodoService } from './todo.service';
 import { FormsModule } from "@angular/forms";
 import { StoreModule } from "@ngrx/store";
 import { reducers } from './store';
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { EffectsModule } from "@ngrx/effects";
+import { TodoEffects } from './store/todos.effects';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -15,7 +19,11 @@ import { reducers } from './store';
     BrowserModule,
     FormsModule, 
     FlexLayoutModule,
-    StoreModule.forRoot(reducers )
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      name:'to do'
+    }),
+    EffectsModule.forRoot([TodoEffects])
   ],
   providers: [TodoService],
   bootstrap: [AppComponent]

@@ -5,21 +5,41 @@ import * as todoAction from './todos.actions'
 
 export interface TodoState {
     datas: Todo[];
+    loading:boolean;
+    loaded:boolean;
+    error:any;
   }
 
 const initialState = {
-    datas: [
-      {
-        message: 'manger une pizza',
-        done: false
-      }
-    ]
+    datas: null,
+    loading:false,
+    loaded:false,
+    error:null
   };
 
 export function todosReducer(state:TodoState = initialState, action:todoAction.TodosActionType):TodoState{
     console.log(state);
     console.log(action);
     switch(action.type){
+      case todoAction.FETCH_TODO:
+        return {
+            ...state,loading:true
+          }
+      case todoAction.FETCH_TODO_SUCCESS:
+         return {
+                ...state,
+                datas:action.payload ,
+                loading:false,
+                loaded:true,
+                error:null
+              };
+        case todoAction.FETCH_TODO_SUCCESS:
+          return {
+                    ...state,
+                    loading:false,
+                    loaded:false,
+                    error:action.payload
+                  };
         case todoAction.TODO_CREATE: return {
             ...state,
             datas:[...state.datas,action.payload]

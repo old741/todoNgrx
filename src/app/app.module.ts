@@ -10,15 +10,24 @@ import { reducers } from './store';
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { EffectsModule } from "@ngrx/effects";
 import { TodoEffects } from './store/todos.effects';
-
+import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { RouterModule } from "@angular/router";
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TodoListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule, 
     FlexLayoutModule,
+    RouterModule.forRoot([
+      {
+        path:'', redirectTo:'todo' , pathMatch:'full',
+        // pathMatch full pour que la route sois reconnu 
+    },{ path: 'todo',component:TodoListComponent,
+    }
+  ]),
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       name:'to do'

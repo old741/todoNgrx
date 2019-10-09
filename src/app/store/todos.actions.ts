@@ -1,6 +1,5 @@
 import { Action } from '@ngrx/store';
 import { Todo } from '../todo.model';
-import { Observable } from 'rxjs';
 
 export const TODO_CREATE='[todo] create';
 export const TODO_DELETE='[todo] delete';

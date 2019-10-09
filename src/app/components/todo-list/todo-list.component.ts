@@ -7,6 +7,7 @@ import { State } from '../../store';
 import  * as todosAction  from '../../store/todos.actions';
 import { map } from 'rxjs/operators';
 import { TodoState } from '../../store/todos.reducer';
+import { todoListSelector, selectedTodoSelector } from 'src/app/store/selectors';
 
 
 
@@ -17,15 +18,18 @@ import { TodoState } from '../../store/todos.reducer';
 })
 export class TodoListComponent implements OnInit {
 
-  public todos$: Observable<Todo[]> = this.store.pipe(
+/*   public todos$: Observable<Todo[]> = this.store.pipe(
     select('todos')// on selectionne la partie de notre state que l'on veut récupérer donc la key todos dans index qui fait référence à notre todo reducer
  //c'est vraiment la définiton de notre store
  // select('todos') nous retoune le todos state
  ,map((todoState:TodoState)=> todoState.datas)
  
   ) // on utilise plus le todo service mais le store  ----->    public todos$: Observable<Todo[]> =this.todoService.todos$.asObservable();
- 
- 
+  */
+ public todos$: Observable<Todo[]> = this.store.pipe(select(todoListSelector));
+
+ public selectedTodo$: Observable<Todo> = this.store.pipe(select(selectedTodoSelector));
+
    ngOnInit():void{
      this.store.dispatch(new todosAction.FetchTodo())
    }

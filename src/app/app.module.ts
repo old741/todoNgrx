@@ -6,7 +6,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { TodoService } from './todo.service';
 import { FormsModule } from "@angular/forms";
 import { StoreModule } from "@ngrx/store";
-import { reducers } from './store';
+import { reducers, KEY_ROUTER } from './store';
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { EffectsModule } from "@ngrx/effects";
 import { TodoEffects } from './store/todos.effects';
@@ -42,7 +42,7 @@ import { MyRouterStateSerializer } from './store/router.helper';
     }),
     EffectsModule.forRoot([TodoEffects]),
     StoreRouterConnectingModule.forRoot({
-      stateKey:'routing'
+      stateKey:KEY_ROUTER
     })
 
   ],

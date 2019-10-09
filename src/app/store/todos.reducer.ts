@@ -18,8 +18,8 @@ const initialState = {
   };
 
 export function todosReducer(state:TodoState = initialState, action:todoAction.TodosActionType):TodoState{
-    console.log(state);
-    console.log(action); 
+/*     console.log(state);
+    console.log(action);  */
     switch(action.type){
       case todoAction.FETCH_TODO:
         return {

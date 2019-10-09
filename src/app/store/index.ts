@@ -3,6 +3,7 @@ import { ActionReducerMap } from "@ngrx/store";
 import * as  routerReducer  from "@ngrx/router-store";
 import { MyRouterState } from './router.helper';
 
+export const KEY_ROUTER='routing';
 
 // index défini la map de réducer de notre architecture
 

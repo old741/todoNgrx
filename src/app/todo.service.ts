@@ -12,10 +12,12 @@ export class TodoService {
   public getTodo():Observable<Todo[]>{
     return timer(2000).pipe(
       map( ()=> [{
+        id:'1',
         message:'work',
         done:false
       },
       {
+        id:'2',
         message:'call JM',
         done:true
       }]

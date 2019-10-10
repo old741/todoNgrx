@@ -1,0 +1,12 @@
+
+.container-fluid {
+    height: 100vh;
+  }
+  
+  .material-icons {
+    cursor: pointer;
+  }
+  
+  .list-group-item {
+    cursor: pointer;
+  }

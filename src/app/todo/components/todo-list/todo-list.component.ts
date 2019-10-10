@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Todo } from '../../todo.model';
-import { TodoService } from '../../todo.service';
+import { Todo } from '../../../todo.model';
 import { Store, select } from '@ngrx/store';
-import { State } from '../../store';
+import { State } from '../../../store';
 import  * as todosAction  from '../../store/todos.actions';
-import { map } from 'rxjs/operators';
-import { TodoState } from '../../store/todos.reducer';
-import { todoListSelector, selectedTodoSelector } from 'src/app/store/selectors';
+
+import { selectedTodoSelector, todoListArraySelector } from 'src/app/todo/store/selectors';
 
 
 
@@ -26,7 +24,7 @@ export class TodoListComponent implements OnInit {
  
   ) // on utilise plus le todo service mais le store  ----->    public todos$: Observable<Todo[]> =this.todoService.todos$.asObservable();
   */
- public todos$: Observable<Todo[]> = this.store.pipe(select(todoListSelector));
+ public todos$: Observable<Todo[]> = this.store.pipe(select(todoListArraySelector));
 
  public selectedTodo$: Observable<Todo> = this.store.pipe(select(selectedTodoSelector));
 
@@ -40,19 +38,19 @@ export class TodoListComponent implements OnInit {
   public addTodo() {
     //this.todoService.addTodo({ message: this.message, done: false });
     // Une action est un objet avec un type et un payload
-    this.store.dispatch(new todosAction.CreateTodo({ message: this.message, done: false }))
+    this.store.dispatch(new todosAction.CreateTodo({ id:'',message: this.message, done: false }))
   }
  
-  public toggleTodo(index: number) {
+  public toggleTodo(id:string) {
     //this.todoService.toggleTodo(index);
-    this.store.dispatch( new todosAction.ToggleTodo(index));
+    this.store.dispatch( new todosAction.ToggleTodo(id));
  
   }
  
-  public deleteTodo(index: number) {
-    console.log(index);
+  public deleteTodo(id:string) {
+   // console.log(id);
     //this.todoService.deleteTodo(index);
-    this.store.dispatch( new todosAction.DeleteTodo(index));
+    this.store.dispatch( new todosAction.DeleteTodo(id));
  
   }
 
